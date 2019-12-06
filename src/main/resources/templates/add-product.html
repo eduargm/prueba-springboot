@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Add product</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <div class="container my-5">
+            <h3>Add product</h3>
+
+            <div class="col-md-8">
+                <form action="#" th:action="@{/add}" th:object="${producto}" method="post" enctype="multipart/form-data">
+                  
+                    <div class="row">
+
+                        <div class="form-group col-md-8">
+                             <label>IdProducto</label>
+                            <input class="form-control" type="text" id="idproducto" th:field="*{idproducto}" name="idproducto"/>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label>Nombre</label>
+                            <input class="form-control" type="text" id="nombre" th:field="*{nombre}" name="nombre"/>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label>Descripción</label>
+                            <input class="form-control" type="text" id="descripcion" th:field="*{descripcion}" name="descripcion"/>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label>Select category</label>
+                            <select th:field="*{idcategoria}">
+                                <option value="">Select</option>
+                                <option th:each="categoria : ${categorias}" th:value="${categoria.idcategoria}" th:utext="${categoria.categoria}"/>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group col-md-8">
+                            <label>Precio</label>
+                            <input class="form-control" type="text" id="precio" th:field="*{precio}" name="precio"/>
+                        </div>
+                        
+                        <div class="form-group col-md-8">
+                            <label>Peso (Kilogramos)</label>
+                            <input class="form-control" type="text" id="peso" th:field="*{peso}" name="peso"/>
+                        </div>
+                        
+                        <div class="form-group col-md-8">
+                            <label>Foto 1</label>
+                            <input type="file" id="file" name="file"/> <br/><br/>
+                        </div>
+                                         
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value="Registrar">
+                        </div>
+
+                    </div>
+                </form>
+                
+                <br>
+                
+                <div class="form-group col-md-8">
+                    <p th:text=${mensaje}></p>
+                </div>
+                
+            </div>         
+        </div>
+
+    </body>
+</html>
